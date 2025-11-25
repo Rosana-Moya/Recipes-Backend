@@ -1,37 +1,13 @@
-const express = require("express");
-const cors = require("cors");
-const mysql = require("../database/mysql-pool");
-const app = express();
-const port = 3000;
-
-require("dotenv").config();
-
-app.use(express.json({ limit: "25mb" }));
-
-app.use(cors());
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
-
-const { getRecipes } = require("./getRecipes");
-const { getchRecipeId } = require("./getRecipeId");
-const { postRecipe } = require("./postRecipe");
-const { putRecipeId } = require("./putRecipeId");
-const { patchRecipeId } = require("./patchRecipeId");
+const { getRecipes } = require("./get-recipes");
+const { getRecipeId } = require("./get-recipeId");
+const { postRecipe } = require("./post-recipe");
+const { putRecipeId } = require("./put-recipeId");
+const { patchRecipeId } = require("./patch-recipeId");
 
 module.exports = {
     getRecipes,
-    getchRecipeId,
+    getRecipeId,
     postRecipe,
     putRecipeId,
-    patchRecipeId
+    patchRecipeId,
 };
-
-
-
-
-
-
-
-

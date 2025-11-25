@@ -1,5 +1,11 @@
-// GET una receta específica
-app.get("/recipe/:id", async (req, res) => {
+const mysql = require("../database/mysql-pool");
+
+function validateId(id) {
+    const num = Number(id);
+    return Number.isInteger(num) && num > 0;
+}
+
+const getRecipeId = async (req, res) => {
     try {
         const { id } = req.params;
 
@@ -19,8 +25,8 @@ app.get("/recipe/:id", async (req, res) => {
     } catch (err) {
         res.status(500).send("Algo ha ido mal");
     }
-});
+};
 
 module.exports = {
-    getchRecipeId,
+    getRecipeId,
 };

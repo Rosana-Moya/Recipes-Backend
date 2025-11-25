@@ -1,9 +1,9 @@
-// POST crear receta
-app.post("/recipe", async (req, res) => {
+const mysql = require("../database/mysql-pool");
+
+const postRecipe = async (req, res) => {    //app.post("/recipe",
     try {
         const { name, ingredients, instructions } = req.body;
 
-        // Validación
         if (!name || typeof name !== "string" || name.length > 40) {
             return res.status(400).json({ error: "Nombre inválido." });
         }
@@ -22,7 +22,7 @@ app.post("/recipe", async (req, res) => {
     } catch (err) {
         res.status(500).send("Algo ha ido mal");
     }
-});
+};
 
 module.exports = {
     postRecipe,

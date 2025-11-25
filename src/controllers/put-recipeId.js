@@ -1,5 +1,11 @@
-// PUT actualizar receta
-app.put("/recipe/:id", async (req, res) => {
+const mysql = require("../database/mysql-pool");
+
+function validateId(id) {
+    const num = Number(id);
+    return Number.isInteger(num) && num > 0;
+}
+
+const putRecipeId = async (req, res) => {  //app.put("/recipe/:id",
     try {
         const { id } = req.params;
         const { name, ingredients, instructions } = req.body;
@@ -29,7 +35,7 @@ app.put("/recipe/:id", async (req, res) => {
     } catch (err) {
         res.status(500).send("Algo ha ido mal");
     }
-});
+};
 
 module.exports = {
     putRecipeId,

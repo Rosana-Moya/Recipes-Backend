@@ -1,5 +1,11 @@
-// PATCH eliminar receta (marcar deleted_at)
-app.patch("/delete/:id", async (req, res) => {
+const mysql = require("../database/mysql-pool");
+
+function validateId(id) {
+    const num = Number(id);
+    return Number.isInteger(num) && num > 0;
+}
+
+const patchRecipeId = async (req, res) => {   //app.patch("/delete/:id",
     try {
         const { id } = req.params;
 
@@ -17,9 +23,10 @@ app.patch("/delete/:id", async (req, res) => {
 
         res.json({ message: "Receta eliminada correctamente." });
     } catch (err) {
+        console.log(err);
         res.status(500).send("Algo ha ido mal");
     }
-});
+};
 
 module.exports = {
     patchRecipeId,
